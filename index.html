@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Charles Chan · Digital Director / 港式叉燒</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+HK:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#EAF2FF;
+  --dim:#8A9BB8;
+  --bg0:#070A14;
+  --bg1:#0C1122;
+  --line:rgba(120,150,220,.16);
+  --card:rgba(20,28,52,.55);
+  --a1:#3DE0C8;
+  --a2:#7B6CFF;
+  --a3:#FF7A59;
+  --glow:rgba(123,108,255,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:'Noto Sans HK','Space Grotesk',system-ui,sans-serif;
+  background:var(--bg0);
+  color:var(--ink);
+  min-height:100dvh;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+.field{position:fixed;inset:0;z-index:0;overflow:hidden;background:
+  radial-gradient(120% 80% at 20% -10%, rgba(61,224,200,.10), transparent 55%),
+  radial-gradient(120% 90% at 90% 0%, rgba(123,108,255,.16), transparent 55%),
+  linear-gradient(180deg,var(--bg0),var(--bg1));}
+.orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;
+  animation:drift 18s ease-in-out infinite alternate;}
+.orb.a{width:340px;height:340px;background:var(--a2);top:-80px;left:-60px;}
+.orb.b{width:300px;height:300px;background:var(--a1);bottom:-90px;right:-70px;animation-delay:-6s;}
+.orb.c{width:220px;height:220px;background:var(--a3);top:40%;right:-40px;opacity:.3;animation-delay:-11s;}
+@keyframes drift{to{transform:translate3d(40px,30px,0) scale(1.15)}}
+.grid{position:absolute;inset:0;opacity:.25;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:44px 44px;mask-image:radial-gradient(80% 60% at 50% 20%,#000,transparent);}
+
+.wrap{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:38px 22px 60px;}
+
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--a1);opacity:0;animation:rise .7s .1s forwards;}
+.name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(38px,11vw,54px);
+  line-height:1.02;letter-spacing:-.02em;margin:10px 0 4px;
+  background:linear-gradient(100deg,var(--ink),var(--a1),var(--a2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  opacity:0;animation:rise .7s .2s forwards;}
+.name .cn{display:block;font-family:'Noto Sans HK';font-weight:700;font-size:.5em;
+  color:var(--ink);-webkit-text-fill-color:var(--ink);margin-top:6px;letter-spacing:.04em;}
+
+.duo{display:flex;gap:8px;margin:22px 0 18px;opacity:0;animation:rise .7s .3s forwards;}
+.tab{flex:1;border:1px solid var(--line);background:var(--card);border-radius:14px;
+  padding:12px 14px;cursor:pointer;transition:.25s;backdrop-filter:blur(8px);text-align:left;}
+.tab.on{border-color:transparent;box-shadow:0 0 0 1.5px var(--a2),0 8px 30px -12px var(--glow);
+  background:linear-gradient(180deg,rgba(123,108,255,.14),rgba(20,28,52,.55));}
+.tab{display:flex;align-items:center;gap:10px}
+.tab .av{width:38px;height:38px;flex:none;border-radius:10px;object-fit:cover;
+  border:1px solid var(--line);background:rgba(255,255,255,.04)}
+.tab.two .av{border-radius:50%}
+.tab .tt{min-width:0}
+.tab h3{font-size:13.5px;font-weight:600;letter-spacing:.01em;color:var(--ink);line-height:1.2}
+.tab.two h3{color:var(--a3)}
+.tab p{font-size:10.5px;color:var(--dim);margin-top:2px;font-family:'JetBrains Mono',monospace;}
+
+.bio{background:var(--card);border:1px solid var(--line);border-radius:18px;
+  padding:16px 18px;font-size:14.5px;line-height:1.72;color:#C9D6EE;margin-top:0;
+  backdrop-filter:blur(10px);opacity:0;animation:rise .7s .4s forwards;min-height:112px;}
+.bio .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.bio .tags span{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--a1);
+  border:1px solid var(--line);border-radius:20px;padding:3px 9px;}
+
+.links{margin-top:22px;display:grid;gap:11px;opacity:0;animation:rise .7s .5s forwards;}
+.lnk{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);
+  background:var(--card);border:1px solid var(--line);border-radius:15px;padding:14px 16px;
+  backdrop-filter:blur(8px);transition:.2s;position:relative;overflow:hidden;}
+.lnk:active{transform:scale(.98)}
+.lnk:hover{border-color:rgba(123,108,255,.5);transform:translateY(-1px)}
+.lnk .ic{width:38px;height:38px;flex:none;border-radius:11px;display:grid;place-items:center;
+  background:rgba(255,255,255,.04);border:1px solid var(--line);}
+.lnk .ic svg{width:20px;height:20px}
+.lnk .tx{min-width:0}
+.lnk .tx b{display:block;font-size:14.5px;font-weight:600}
+.lnk .tx small{display:block;color:var(--dim);font-size:11.5px;line-height:1.45;font-family:'JetBrains Mono',monospace;word-break:break-word}
+.lnk .go{margin-left:auto;color:var(--dim);font-size:18px;transition:.2s}
+.lnk:hover .go{color:var(--a1);transform:translateX(3px)}
+.lnk.wa .ic{background:rgba(37,211,102,.12);border-color:rgba(37,211,102,.3)}
+.lnk.wa .ic svg{fill:#25D366}
+
+.qr{margin-top:26px;text-align:center;opacity:0;animation:rise .7s .6s forwards;}
+.qr .frame{display:inline-block;padding:14px;background:#fff;border-radius:18px;
+  box-shadow:0 20px 50px -20px var(--glow)}
+.qr img{display:block;width:150px;height:150px;border-radius:6px}
+
+.branches{margin-top:20px;display:none;opacity:0;animation:rise .7s .55s forwards;}
+.branches.show{display:block}
+.branches .bh{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--dim);text-align:center;margin-bottom:12px;position:relative;}
+.branches .bh::before,.branches .bh::after{content:"";position:absolute;top:50%;width:22%;height:1px;
+  background:var(--line);}
+.branches .bh::before{left:6%}.branches .bh::after{right:6%}
+.branches .bc{background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:13px 15px;margin-bottom:9px;backdrop-filter:blur(8px);}
+.branches .bc b{display:block;font-size:13px;font-weight:600;color:var(--ink);line-height:1.4}
+.branches .bc small{display:block;margin-top:3px;font-size:11.5px;color:var(--dim);line-height:1.5}
+.branches .bc .city{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;
+  color:var(--a1);text-transform:uppercase}
+.qr p{margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
+
+.foot{margin-top:30px;text-align:center;font-family:'JetBrains Mono',monospace;
+  font-size:10.5px;letter-spacing:.2em;color:var(--dim);opacity:.6}
+
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}.eyebrow,.name,.duo,.bio,.links,.qr{opacity:1!important}}
+
+/* ── C: 頂部大切換掣 ── */
+/* ── C: 檔案夾標籤風 ── */
+.switch{margin:22px 0 0;display:flex;gap:6px;position:relative;z-index:2;
+  opacity:0;animation:rise .7s .3s forwards;}
+.switch button{flex:1;background:var(--card);border:1px solid var(--line);border-bottom:0;
+  border-radius:16px 16px 0 0;cursor:pointer;padding:16px 10px 20px;
+  display:flex;align-items:center;justify-content:center;gap:10px;color:var(--dim);
+  transition:background .3s,color .3s,transform .3s;min-width:0;position:relative;
+  transform:translateY(6px) scale(.97);opacity:.62;backdrop-filter:blur(8px);}
+.switch button.act{color:#fff;opacity:1;transform:translateY(0) scale(1);
+  border-color:var(--a2);border-bottom:0;z-index:2;
+  background:linear-gradient(180deg,rgba(123,108,255,.22),rgba(20,28,52,.6));}
+.switch button.two.act{border-color:var(--a3);
+  background:linear-gradient(180deg,rgba(255,122,89,.2),rgba(20,28,52,.6));}
+.switch button.act::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:6px;
+  background:linear-gradient(180deg,rgba(20,28,52,.6),transparent);}
+.switch .av{width:46px;height:46px;flex:none;border-radius:12px;object-fit:cover;
+  border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06)}
+.switch button.two .av{border-radius:50%}
+.switch .sl{min-width:0}
+.switch .sl b{display:block;font-size:14.5px;font-weight:600;line-height:1.2;text-align:left}
+.switch .sl small{display:block;font-size:10px;font-family:'JetBrains Mono',monospace;
+  opacity:.85;text-align:left;white-space:nowrap}
+/* bio 卡同選中 tab 無縫黏合成檔案夾 */
+.bio{border-radius:0 16px 16px 16px !important;margin-top:-1px;position:relative;z-index:1;
+  border-color:var(--a2) !important;border-top-color:var(--line) !important;}
+.switch.p1 ~ .bio{border-radius:16px 0 16px 16px !important;border-color:var(--a3) !important;
+  border-top-color:var(--line) !important;}
+</style>
+</head>
+<body>
+<div class="field">
+  <div class="grid"></div>
+  <div class="orb a"></div><div class="orb b"></div><div class="orb c"></div>
+</div>
+
+<main class="wrap">
+  <div class="eyebrow">Digital Director · Artist · GBA</div>
+  <h1 class="name">CHARLES CHAN<span class="cn">陳展華 · 港式叉燒</span></h1>
+
+  <div class="switch p0" id="switch">
+    <button class="one act" onclick="pick(0)">
+      <img class="av" alt="PPI" src="data:image/png;base64,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">
+      <span class="sl"><b>PPI 數碼總監</b><small>art × tech</small></span>
+    </button>
+    <button class="two" onclick="pick(1)">
+      <img class="av" alt="Charles" src="data:image/jpeg;base64,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">
+      <span class="sl"><b>個人 IP:港式叉燒</b><small>RWA · 低空經濟</small></span>
+    </button>
+  </div>
+
+  <div class="bio" id="bio"></div>
+
+  <nav class="links" id="links"></nav>
+
+  <div class="branches" id="branches"></div>
+
+  <div class="qr">
+    <div class="frame">
+      <img alt="WhatsApp QR" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fwa.me%2F85294020600">
+    </div>
+    <p>Scan · WhatsApp Me</p>
+  </div>
+
+  <div class="foot">Pixels Per Innovation LTD. · Hong Kong</div>
+</main>
+
+<script>
+/* ═══════ 改呢度就得 ═══════ */
+const DATA = {
+  bios:[
+    { text:"Pixels Per Innovation LTD. 數碼總監。25 年跨界創作 — 生成式 AI、虛擬製作、VR/AR/XR。帶領設計團隊,打破傳統影視框架。曾主導香港首部虛擬實拍電視劇 (ViuTV)。",
+      tags:["Virtual Production","Generative AI","3D / VR","In-Camera VFX"] },
+    { text:"個人 IP:港式叉燒。專注真實世界資產 (RWA)、低空經濟、大健康。持香港數碼資產分析師資格 + CAAC 無人機牌 (航拍測量 / 3D 建模)。",
+      tags:["RWA","低空經濟","無人機測量","AI × FinTech"] }
+  ],
+  // links[0] = PPI 數碼總監頁 ; links[1] = 港式叉燒頁
+  links:[
+    [
+      { icon:"ig",   label:"PPI_Studio Instagram 📸", sub:"@ppi_studio",           url:"https://www.instagram.com/ppi_studio" },
+      { icon:"mail", label:"公司 Email ✉️",           sub:"info@pixelsperinn.com", url:"mailto:info@pixelsperinn.com" },
+      { icon:"map",  label:"公司地址 📍",             sub:"Unit 25, 11/F, Pacific Trade Centre, 2 Kai Hing Road, Kowloon Bay", url:"https://maps.google.com/?q=Pacific+Trade+Centre+2+Kai+Hing+Road+Kowloon+Bay" },
+      { icon:"wa",   label:"WhatsApp 💬",             sub:"852 9402 0600",         url:"https://wa.me/85294020600?text=I%27m%20Charles%2C%20here%20is%20my%20contact%3A%20ccw0511.github.io/name_card" },
+      { icon:"ppt",  label:"個人作品集 🎨",           sub:"Portfolio · Slides",    url:"https://docs.google.com/presentation/d/e/2PACX-1vSfEY2BelaWZ9i4FL_BbkwTY3HNvhd8OFOgit6-WkZLK0bS8ArL13FAOOIRw60Cem7s6nOrFFiUWE8A/pub?start=false&loop=false&delayms=3000" }
+    ],
+    [
+      { icon:"wa",   label:"WhatsApp 💬",             sub:"852 9402 0600",         url:"https://wa.me/85294020600?text=I%27m%20Charles%2C%20here%20is%20my%20contact%3A%20ccw0511.github.io/name_card" },
+      { icon:"ig2",  label:"港式叉燒.ai Instagram 📸", sub:"@charsiu.ai",           url:"https://www.instagram.com/charsiu.ai/" },
+      { icon:"yt",   label:"港式叉燒.ai YouTube ▶️",   sub:"@CharSiuai",            url:"https://www.youtube.com/@CharSiuai" }
+    ]
+  ],
+  // 分公司(只喺 PPI 頁顯示)
+  branches:[
+    { name:"元点创意(广州)科技文化发展有限公司", city:"Guangzhou · 廣州",
+      desc:"影視製作 · 真人短劇 · AI 漫劇" },
+    { name:"元点智慧科技(深圳)有限公司", city:"Shenzhen · 深圳",
+      desc:"AI Agent · AI 工具開發" }
+  ]
+};
+// 公司完整地址:Unit 25, 11/F, Pacific Trade Centre, 2 Kai Hing Road, Kowloon Bay, Kowloon
+/* ═════════════════════════ */
+
+const IC={
+ wa:'<svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-1.7-.8-2.8-1.5-3.9-3.4-.3-.5.3-.5.8-1.5.1-.2 0-.3 0-.5s-.6-1.5-.9-2c-.2-.5-.4-.4-.6-.4H8c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 5 4.3 1.8.8 2.5.8 3.4.7.5-.1 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3-.1-.2-.3-.2-.5-.3zM12 2a10 10 0 00-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1012 2z"/></svg>',
+ ig:'<svg viewBox="0 0 24 24" fill="none" stroke="#E1306C" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#E1306C" stroke="none"/></svg>',
+ ig2:'<svg viewBox="0 0 24 24" fill="none" stroke="#FF7A59" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#FF7A59" stroke="none"/></svg>',
+ yt:'<svg viewBox="0 0 24 24" fill="#FF0000"><path d="M23 12s0-3.4-.4-5a2.6 2.6 0 00-1.8-1.8C19 4.7 12 4.7 12 4.7s-7 0-8.8.5A2.6 2.6 0 001.4 7C1 8.6 1 12 1 12s0 3.4.4 5a2.6 2.6 0 001.8 1.8c1.8.5 8.8.5 8.8.5s7 0 8.8-.5A2.6 2.6 0 0022.6 17c.4-1.6.4-5 .4-5zM9.8 15.3V8.7l5.7 3.3z"/></svg>',
+ mail:'<svg viewBox="0 0 24 24" fill="none" stroke="#7B6CFF" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>',
+ map:'<svg viewBox="0 0 24 24" fill="none" stroke="#3DE0C8" stroke-width="2"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>',
+ ppt:'<svg viewBox="0 0 24 24" fill="none" stroke="#FF7A59" stroke-width="2"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M8 8h5a2 2 0 010 4H8z" fill="#FF7A59" stroke="none"/></svg>',
+ web:'<svg viewBox="0 0 24 24" fill="none" stroke="#3DE0C8" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18"/></svg>'
+};
+
+function pick(i){
+  var sw=document.getElementById('switch');
+  if(sw){sw.className='switch p'+i;sw.querySelectorAll('button').forEach((b,n)=>b.classList.toggle('act',n===i));}
+  const b=DATA.bios[i];
+  document.getElementById('bio').innerHTML =
+    b.text + '<div class="tags">'+b.tags.map(t=>`<span>${t}</span>`).join('')+'</div>';
+  // 連結跟身份切換
+  document.getElementById('links').innerHTML = DATA.links[i].map(l=>{
+    const newTab = /^https?:/.test(l.url) ? ' target="_blank" rel="noopener"' : '';
+    return `<a class="lnk ${l.icon}" href="${l.url}"${newTab}>
+      <span class="ic">${IC[l.icon]||IC.web}</span>
+      <span class="tx"><b>${l.label}</b><small>${l.sub}</small></span>
+      <span class="go">→</span>
+    </a>`;
+  }).join('');
+  // 分公司:只 PPI 頁 (i===0) 顯示
+  const br=document.getElementById('branches');
+  if(i===0){
+    br.classList.add('show');
+    br.innerHTML='<div class="bh">兩地分公司 · Mainland Offices</div>'+
+      DATA.branches.map(x=>`<div class="bc"><b>${x.name}</b>`+
+        `<small><span class="city">${x.city}</span> · ${x.desc}</small></div>`).join('');
+  }else{
+    br.classList.remove('show');
+    br.innerHTML='';
+  }
+}
+pick(0);
+</script>
+</body>
+</html>
